@@ -1,6 +1,4 @@
 
-r
-Bapp/src/main/java/com/master/androidessentials/localdb/Employee.kt,0\5\057a4d95ab6496ad47029dade62982843bf5ccd0
 u
 Eapp/src/main/java/com/master/androidessentials/localdb/EmployeeDao.kt,a\d\ad8e2588ee30863f35e5157182ea11e5232fc3e1
 v
