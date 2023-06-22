@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.master.androidessentials.utils.Address
 import com.master.androidessentials.utils.AddressConverter
 
-@Entity(tableName = "emp")
+@Entity(tableName = "employee")
 @TypeConverters(AddressConverter::class)
 data class Employee(
     @PrimaryKey val empId: Int,

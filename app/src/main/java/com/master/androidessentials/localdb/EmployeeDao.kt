@@ -6,7 +6,7 @@ import androidx.room.Query
 
 @Dao
 interface EmployeeDao {
-    @Query("select * from emp")
+    @Query("select * from employee")
     fun getAllEmployees():List<Employee>
 
     @Insert
