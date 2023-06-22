@@ -9,8 +9,7 @@ import javax.inject.Inject
 
 
 class CustomInterceptor @Inject constructor() : Interceptor {
-    private val loggingInterceptor: HttpLoggingInterceptor =
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val request:Request = chain.request()
 
@@ -26,7 +25,7 @@ class CustomInterceptor @Inject constructor() : Interceptor {
             }
             401 -> {
                 // Handle unauthorized response
-
+                println("Request Unauthorized")
             }
             in 400..499 -> {
                 // Handle client error response
@@ -46,7 +45,7 @@ class CustomInterceptor @Inject constructor() : Interceptor {
         }
 
         // Return the response
-        return loggingInterceptor.intercept(chain)
+        return response
     }
 
 

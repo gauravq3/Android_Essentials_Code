@@ -1,11 +1,15 @@
 package com.master.androidessentials.di
 
+import android.content.Context
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.master.androidessentials.networking.ApiService
 import com.master.androidessentials.utils.Constants.BASE_URL
 import com.master.androidessentials.utils.CustomInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -19,19 +23,20 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkingModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideInterceptor(): Interceptor {
-//        return CustomInterceptor()
-//    }
+    @Provides
+    @Singleton
+    fun provideInterceptor(): Interceptor {
+        return CustomInterceptor()
+    }
 
     @Provides
     @Singleton
-    fun provideOkHttp(): OkHttpClient {
-//        val interceptor = HttpLoggingInterceptor().apply {
-//            level = HttpLoggingInterceptor.Level.BODY
-//        }
-        return OkHttpClient.Builder().build()
+    fun provideOkHttp(interceptor: CustomInterceptor): OkHttpClient {
+        val logging = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+        return OkHttpClient.Builder().addInterceptor(interceptor)
+            .addInterceptor(logging).build()
     }
 
 
@@ -46,5 +51,11 @@ object NetworkingModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGlide(@ApplicationContext application: Context): RequestManager {
+        return Glide.with(application)
     }
 }
