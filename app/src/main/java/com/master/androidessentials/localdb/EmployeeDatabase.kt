@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.master.androidessentials.mvvm.models.userslist.User
 
-@Database(entities = [Employee::class], version = 1)
+@Database(entities = [User::class], version = 1)
 abstract class EmployeeDatabase:RoomDatabase() {
 abstract fun getEmpDao1():EmployeeDao
 

@@ -15,8 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
-    private val _allPosts = MutableLiveData<ApiResponse<UsersList>>()
-    val allPosts: LiveData<ApiResponse<UsersList>> get() = _allPosts
+    private val _allPosts = MutableLiveData<ApiResponse<List<User>>>()
+    val allPosts: LiveData<ApiResponse<List<User>>> get() = _allPosts
 
     //user id
     private val _user = MutableLiveData<User>()
@@ -30,11 +30,8 @@ class SharedViewModel @Inject constructor(private val repository: HomeRepository
     fun fetchAllPosts() {
         _allPosts.value = ApiResponse.Loading
         viewModelScope.launch {
-            try {
-                val response = repository.getAllPosts()
+            repository.getAllUsers().observeForever { response ->
                 _allPosts.value = response
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
         }
     }

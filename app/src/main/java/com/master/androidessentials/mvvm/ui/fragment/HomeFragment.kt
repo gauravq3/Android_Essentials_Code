@@ -52,7 +52,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             when (result) {
                 is ApiResponse.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    mAdapter.updateList(result.data.users)
+                    mAdapter.updateList(result.data)
                 }
                 is ApiResponse.Failure -> {
                     binding.progressBar.visibility = View.GONE
@@ -70,7 +70,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         mAdapter.setItemClickListener { item ->
 
-           viewmodel.setUserDetails(item)
+            viewmodel.setUserDetails(item)
             findNavController().navigate(R.id.action_homeFragment_to_DetailsFragment)
         }
 
