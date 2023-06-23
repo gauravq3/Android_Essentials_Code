@@ -48,7 +48,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         }
 
-        viewmodel.allPosts.observe(viewLifecycleOwner) { result ->
+        viewmodel.usersList.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is ApiResponse.Success -> {
                     binding.progressBar.visibility = View.GONE

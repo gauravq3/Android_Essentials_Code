@@ -3,23 +3,22 @@ package com.master.androidessentials.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.widget.Toast
 import com.master.androidessentials.di.ApplicationContextQualifier
-import com.master.androidessentials.networking.ApiService
-import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.ResponseBody.Companion.toResponseBody
-import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.Interceptor
+import okhttp3.Request
+import okhttp3.Response
 import java.io.IOException
 import javax.inject.Inject
 
+/*created by Gaurav Singh 21-06-20223*/
 
-class CustomInterceptor @Inject constructor(@ApplicationContextQualifier val context: Context) : Interceptor {
+class NetworkInterceptor @Inject constructor(@ApplicationContextQualifier val context: Context) :
+    Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val request:Request = chain.request()
+        val request: Request = chain.request()
         if (!isNetworkConnected()) {
-          return  throw IOException("Network not connected")
+            throw IOException("Network not connected")
         }
         // Proceed with the request and get the response
         val response = chain.proceed(request)

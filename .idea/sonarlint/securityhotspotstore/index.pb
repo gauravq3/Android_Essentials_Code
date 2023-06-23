@@ -1,29 +1,9 @@
 
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-|
-Lapp/src/main/java/com/master/androidessentials/mvvm/models/userslist/Hair.kt,e\0\e019c4b0a7ebe1c6677b39f847bea659e193e9c7
-ƒ
-Sapp/src/main/java/com/master/androidessentials/mvvm/models/userslist/Coordinates.kt,d\6\d6513618aadbab43f7edcb53f9410aa25c67fca8
-s
-Capp/src/main/java/com/master/androidessentials/mvvm/models/dummy.kt,7\8\78365606ad20ac2aff444fc1c759593b2350b408
-
-Qapp/src/main/java/com/master/androidessentials/mvvm/models/userslist/UsersList.kt,9\6\9665a95b8ef6e3346b9137e235d3c0dcb8517335
-|
-Lapp/src/main/java/com/master/androidessentials/mvvm/models/userslist/Bank.kt,2\9\29c569df58cb3789ac486be9364b956f1c975275
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-
-Oapp/src/main/java/com/master/androidessentials/mvvm/models/userslist/Address.kt,4\9\492fc75436f3fbff61a4832135ee6f50dff635b1
-y
-Iapp/src/main/java/com/master/androidessentials/adapters/GenericAdapter.kt,6\f\6f8737a0ca21e48f0591a6645887d243dd02fc5d
-{
-Kapp/src/main/java/com/master/androidessentials/mvvm/ui/base/BaseFragment.kt,c\9\c974b3a7e0d4cb53a60799af1536ccaaf80a86ca
-{
-Kapp/src/main/java/com/master/androidessentials/mvvm/ui/base/BaseActivity.kt,a\c\ac19c1704cd95ff1ca76f515c3777074db3113be
-
-Oapp/src/main/java/com/master/androidessentials/mvvm/ui/activity/HomeActivity.kt,1\b\1b5738679ed3a45fe34bbeea997921d39608d4cf

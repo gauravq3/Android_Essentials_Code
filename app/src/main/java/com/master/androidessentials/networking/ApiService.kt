@@ -11,8 +11,4 @@ interface ApiService {
     @GET("users")
     suspend fun getAllUsers(): Response<UsersList>
 
-    @FormUrlEncoded
-    @POST("newPost")
-    suspend fun addNewPost(@Field("id") id: Int): Response<UsersList>
-
 }

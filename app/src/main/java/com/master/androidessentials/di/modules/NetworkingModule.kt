@@ -1,12 +1,13 @@
-package com.master.androidessentials.di
+package com.master.androidessentials.di.modules
 
 import android.app.Application
 import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.master.androidessentials.di.ApplicationContextQualifier
 import com.master.androidessentials.networking.ApiService
 import com.master.androidessentials.utils.Constants.BASE_URL
-import com.master.androidessentials.utils.CustomInterceptor
+import com.master.androidessentials.utils.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,8 +18,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
+/*created by Gaurav Singh 23-06-2023*/
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -26,20 +27,14 @@ object NetworkingModule {
 
     @Provides
     @ApplicationContextQualifier
-    fun provideContext(application: Application): Context {
-        return application.applicationContext
-    }
+    fun provideContext(application: Application): Context = application.applicationContext
+
+    @Provides
+    fun provideInterceptor(application: Context): Interceptor = NetworkInterceptor(application)
 
 
     @Provides
-    @Singleton
-    fun provideInterceptor(application: Context): Interceptor {
-        return CustomInterceptor(application)
-    }
-
-    @Provides
-    @Singleton
-    fun provideOkHttp(interceptor: CustomInterceptor): OkHttpClient {
+    fun provideOkHttp(interceptor: NetworkInterceptor): OkHttpClient {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
@@ -47,23 +42,18 @@ object NetworkingModule {
             .addInterceptor(logging).build()
     }
 
-
     @Provides
-    @Singleton
-    fun provideRetrofit(client: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL).client(client)
+    fun provideRetrofit(client: OkHttpClient): Retrofit =
+        Retrofit.Builder().baseUrl(BASE_URL).client(client)
             .addConverterFactory(GsonConverterFactory.create()).build()
-    }
+
 
     @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
-    }
+    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+
 
     @Provides
-    @Singleton
-    fun provideGlide(@ApplicationContext application: Context): RequestManager {
-        return Glide.with(application)
-    }
+    fun provideGlide(@ApplicationContext application: Context): RequestManager =
+        Glide.with(application)
+
 }

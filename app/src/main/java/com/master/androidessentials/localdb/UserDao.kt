@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.master.androidessentials.mvvm.models.userslist.User
 
 @Dao
-interface EmployeeDao {
+interface UserDao {
 
     @Query("select * from user")
     fun getAllUsers():List<User>

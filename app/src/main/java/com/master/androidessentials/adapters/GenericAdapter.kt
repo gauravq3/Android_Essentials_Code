@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
+/*created by Gaurav Singh 21-06-20223*/
 class GenericAdapter<T, VB : ViewBinding>(
     private var data: List<T>,
     private val bindingInflater: (LayoutInflater) -> VB,
@@ -16,20 +17,22 @@ class GenericAdapter<T, VB : ViewBinding>(
         data = updatedData
         notifyDataSetChanged()
     }
+
     fun setItemClickListener(listener: (T) -> Unit) {
         itemClickListener = listener
     }
 
     inner class ViewHolder(val binding: VB) : RecyclerView.ViewHolder(binding.root) {
 
-            init {
-                itemView.setOnClickListener {
-                    val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        itemClickListener?.invoke(data[position])
-                    }
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    itemClickListener?.invoke(data[position])
+                }
             }
         }
+
         fun bind(item: T) {
             onBind.invoke(binding, item)
         }

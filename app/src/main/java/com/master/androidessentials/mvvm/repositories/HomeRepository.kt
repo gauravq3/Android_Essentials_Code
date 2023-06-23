@@ -1,11 +1,9 @@
 package com.master.androidessentials.mvvm.repositories
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.master.androidessentials.localdb.EmployeeDao
+import com.master.androidessentials.localdb.UserDao
 import com.master.androidessentials.mvvm.models.userslist.User
-import com.master.androidessentials.mvvm.models.userslist.UsersList
 import com.master.androidessentials.networking.ApiResponse
 import com.master.androidessentials.networking.ApiService
 import kotlinx.coroutines.CoroutineScope
@@ -16,9 +14,8 @@ import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
     private val apiService: ApiService,
-    private val dao: EmployeeDao
+    private val dao: UserDao
 ) {
-
 
    suspend fun getAllUsers(): LiveData<ApiResponse<List<User>>> {
         val data = MutableLiveData<ApiResponse<List<User>>>()
@@ -48,31 +45,5 @@ class HomeRepository @Inject constructor(
         }
 
         return data
-    }
-
-
-//    suspend fun getAllUsers(): ApiResponse<UsersList> {
-//        return try {
-//            val response = apiService.getAllUsers()
-//            Log.e("getData", response.toString())
-//            if (response.isSuccessful) {
-//             withContext(Dispatchers.IO)
-//             {
-//                  dao.insertAll(response.body()!!.users)
-//             }
-//                ApiResponse.Success(response.body()!!)
-//
-//            } else {
-//                ApiResponse.Failure(response.message())
-//            }
-//        } catch (e: Exception) {
-//            ApiResponse.Failure(e.message ?: "An error occurred")
-//        }
-//
-//    }
-
-    suspend fun getUsers(): List<User> {
-        // Retrieve data from the Room database
-        return dao.getAllUsers()
     }
 }

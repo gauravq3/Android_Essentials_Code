@@ -1,7 +1,6 @@
-package com.master.androidessentials.di
+package com.master.androidessentials.di.modules
 
-import com.master.androidessentials.localdb.EmployeeDao
-import com.master.androidessentials.localdb.EmployeeDatabase
+import com.master.androidessentials.localdb.UserDao
 import com.master.androidessentials.networking.ApiService
 import com.master.androidessentials.mvvm.repositories.HomeRepository
 import dagger.Module
@@ -15,7 +14,5 @@ import dagger.hilt.android.components.ActivityComponent
 object ActivityModule {
 
     @Provides
-    fun provideHomeRepository(apiService: ApiService,empDao: EmployeeDao): HomeRepository {
-        return HomeRepository(apiService,empDao)
-    }
+    fun provideHomeRepository(apiService: ApiService,empDao: UserDao): HomeRepository = HomeRepository(apiService,empDao)
 }

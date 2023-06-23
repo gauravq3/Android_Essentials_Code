@@ -9,7 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
-    override fun inflateBinding(): ActivityHomeBinding {
-       return ActivityHomeBinding.inflate(layoutInflater)
-    }
+    override fun inflateBinding(): ActivityHomeBinding =ActivityHomeBinding.inflate(layoutInflater)
+
 }
