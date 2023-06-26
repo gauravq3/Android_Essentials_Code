@@ -8,6 +8,8 @@ import com.master.androidessentials.networking.ApiResponse
 import com.master.androidessentials.networking.ApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -17,8 +19,8 @@ class HomeRepository @Inject constructor(
     private val dao: UserDao
 ) {
 
-   suspend fun getAllUsers(): LiveData<ApiResponse<List<User>>> {
-        val data = MutableLiveData<ApiResponse<List<User>>>()
+   suspend fun getAllUsers(): StateFlow<ApiResponse<List<User>>> {
+        val data = MutableStateFlow<ApiResponse<List<User>>>(ApiResponse.Loading)
         data.value = ApiResponse.Loading
 
         val localData = withContext(Dispatchers.IO)
@@ -34,12 +36,12 @@ class HomeRepository @Inject constructor(
                     if (response.isSuccessful) {
                         val fetchedData = response.body()?.users ?: emptyList()
                         dao.insertAll(fetchedData)
-                        data.postValue(ApiResponse.Success(fetchedData))
+                        data.value=(ApiResponse.Success(fetchedData))
                     } else {
-                        data.postValue(ApiResponse.Failure("API request failed"))
+                        data.value=(ApiResponse.Failure("API request failed"))
                     }
                 } catch (e: Exception) {
-                    data.postValue(ApiResponse.Failure(e.message!!))
+                    data.value=(ApiResponse.Failure(e.message!!))
                 }
             }
         }

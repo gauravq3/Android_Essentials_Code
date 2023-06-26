@@ -1,7 +1,9 @@
 package com.master.androidessentials.adapters
 
 import android.view.LayoutInflater
+import com.master.androidessentials.R
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
@@ -9,14 +11,12 @@ import androidx.viewbinding.ViewBinding
 class GenericAdapter<T, VB : ViewBinding>(
     private var data: List<T>,
     private val bindingInflater: (LayoutInflater) -> VB,
-    private val onBind: (VB, T) -> Unit
+    private val onBind: (VB, T) -> Unit,
+    private val areItemsTheSame: (oldItem: T, newItem: T) -> Boolean,
+    private val areContentsTheSame: (oldItem: T, newItem: T) -> Boolean
 ) :
     RecyclerView.Adapter<GenericAdapter<T, VB>.ViewHolder>() {
     private var itemClickListener: ((T) -> Unit)? = null
-    fun updateList(updatedData: List<T>) {
-        data = updatedData
-        notifyDataSetChanged()
-    }
 
     fun setItemClickListener(listener: (T) -> Unit) {
         itemClickListener = listener
@@ -48,4 +48,10 @@ class GenericAdapter<T, VB : ViewBinding>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(data[position])
     }
+    fun updateList1(newList: List<T>) {
+        val diffResult = DiffUtil.calculateDiff(MyDiffUtil(data, newList, areItemsTheSame, areContentsTheSame))
+        data = newList
+        diffResult.dispatchUpdatesTo(this)
+    }
+
 }

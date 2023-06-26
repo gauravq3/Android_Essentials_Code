@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +16,14 @@ import com.master.androidessentials.databinding.FragmentHomeBinding
 import com.master.androidessentials.databinding.ItemViewBinding
 import com.master.androidessentials.mvvm.ui.base.BaseFragment
 import com.master.androidessentials.adapters.GenericAdapter
+import com.master.androidessentials.adapters.MyDiffUtil
 import com.master.androidessentials.mvvm.models.userslist.User
 import com.master.androidessentials.networking.ApiResponse
 import com.master.androidessentials.mvvm.viewmodels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -38,8 +43,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         mAdapter = GenericAdapter(postItems,
             { inflater -> ItemViewBinding.inflate(inflater) },
             { binding, item ->
-                binding.titleText.text = "${item.firstName} -${item.email}"
-            }
+                with(binding) {
+                    user = item
+                    executePendingBindings()
+                }
+            },
+            areItemsTheSame = { oldItem, newItem -> oldItem.id == newItem.id },
+            areContentsTheSame = { oldItem, newItem -> oldItem == newItem }
         )
         binding.rviewPosts.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -47,27 +57,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             adapter = mAdapter
 
         }
-
-        viewmodel.usersList.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is ApiResponse.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    mAdapter.updateList(result.data)
-                }
-                is ApiResponse.Failure -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(
-                        requireContext(),
-                        result.error,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                is ApiResponse.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+        CoroutineScope(Dispatchers.Main).launch {
+            viewmodel.usersList.collect { result ->
+                when (result) {
+                    is ApiResponse.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        mAdapter.updateList1(result.data)
+                    }
+                    is ApiResponse.Failure -> {
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(
+                            requireContext(),
+                            result.error,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    is ApiResponse.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
                 }
             }
         }
-
         mAdapter.setItemClickListener { item ->
 
             viewmodel.setUserDetails(item)

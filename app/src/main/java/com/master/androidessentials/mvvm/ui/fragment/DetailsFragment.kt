@@ -15,11 +15,14 @@ import com.master.androidessentials.networking.ApiResponse
 import com.master.androidessentials.mvvm.ui.base.BaseFragment
 import com.master.androidessentials.mvvm.viewmodels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
-    private val viewmodel: SharedViewModel by activityViewModels()
+    private val mViewmodel: SharedViewModel by activityViewModels()
 
     @Inject
     lateinit var glide: RequestManager
@@ -30,28 +33,11 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        viewmodel.user.observe(viewLifecycleOwner) { result ->
-
-            with(binding)
-            {
-                //set the data to all the views
-                tvName.text = "Name: " + result.firstName + " " + result.lastName
-                tvEmail.text = "Email: " + result.email
-                tvCompany.text = "Company: " + result.company.name
-                tvPhone.text = "Contact: " + result.phone
-                loadImage(result.image, userImage)
-
-            }
+        with(binding) {
+            lifecycleOwner = this@DetailsFragment
+            viewmodel = mViewmodel
+            requestManager = glide
         }
-
-    }
-
-    private fun loadImage(imageUrl: String, imageView: ImageView) {
-        glide.load(imageUrl)
-            .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background)) // Optional: Set a placeholder image
-            .into(imageView)
     }
 
 }
