@@ -2,17 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item1"
-        android:title="item 1" />
+        android:title="@string/scoped_storage" />
     <item
         android:id="@+id/item2"
-        android:title="item 2" />
+        android:title="@string/work_manager" />
     <item
         android:id="@+id/item3"
-        android:title="item 3" />
+        android:title="@string/parallel_execution" />
     <item
         android:id="@+id/item4"
-        android:title="item 4" />
+        android:title="@string/motion_layout" />
     <item
         android:id="@+id/item5"
-        android:title="item 5" />
+        android:title="@string/lamdas_and_higher_order_fn" />
+    <item
+        android:id="@+id/item6"
+        android:title="@string/data_store" />
 </menu>

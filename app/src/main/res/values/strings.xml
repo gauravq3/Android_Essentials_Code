@@ -5,4 +5,10 @@
     <string name="all_posts">All posts</string>
     <string name="something_wrong">Something went wrong!</string>
     <string name="user_details">User Details</string>
+    <string name="scoped_storage">Scoped Storage</string>
+    <string name="work_manager">Work Manager</string>
+    <string name="parallel_execution">Parallel Execution</string>
+    <string name="motion_layout">Motion Layout</string>
+    <string name="lamdas_and_higher_order_fn">Lamdas and Higher Order fn</string>
+    <string name="data_store">Data Store</string>
 </resources>

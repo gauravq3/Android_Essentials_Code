@@ -7,7 +7,7 @@ import androidx.viewbinding.ViewBinding
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     private var _binding: VB? = null
-    private val binding: VB
+     val binding: VB
         get() = _binding!!
 
     abstract fun inflateBinding(): VB
