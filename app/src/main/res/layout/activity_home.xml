@@ -7,44 +7,50 @@
     <data>
 
     </data>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Android Essentials" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+    <!-- Main content -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.fragment.app.FragmentContainerView
+        <!-- Toolbar -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                app:titleTextColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- NavHostFragment -->
+        <fragment
             android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:defaultNavHost="true"
-
-            app:navGraph="@navigation/nav_graph" />
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:menu="@menu/navigation_menu" />
+            app:navGraph="@navigation/nav_graph"
+            app:defaultNavHost="true" />
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
+
 
 </layout>

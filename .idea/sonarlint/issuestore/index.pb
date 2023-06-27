@@ -37,3 +37,13 @@ v
 Fapp/src/main/java/com/master/androidessentials/localdb/UserDatabase.kt,1\e\1e2a2a371f41f47a1af4f1097d3386857abf94f1
 q
 Aapp/src/main/java/com/master/androidessentials/localdb/UserDao.kt,f\3\f3e745957e8ecdf5649c128653ec7119539edd16
+u
+Eapp/src/main/java/com/master/androidessentials/adapters/MyDiffUtil.kt,7\0\706ef1e4fb9193c55ed42b06e5d2811b769e0da2
+y
+Iapp/src/main/java/com/master/androidessentials/adapters/GenericAdapter.kt,6\f\6f8737a0ca21e48f0591a6645887d243dd02fc5d
+z
+Japp/src/main/java/com/master/androidessentials/adapters/BindingAdapters.kt,b\1\b14b027419a8915723efbcfe6df784451a620d69
+Ö
+Uapp/src/main/java/com/master/androidessentials/mvvm/models/response/userslist/User.kt,a\f\af9d91adc38440d0f3422c40bbf50312271583db
+Å
+Qapp/src/main/java/com/master/androidessentials/mvvm/viewmodels/SharedViewModel.kt,8\4\8436ecae798070625e0adc6b25a57d8af99d1334

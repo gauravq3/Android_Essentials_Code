@@ -19,4 +19,9 @@
         android:name="com.master.androidessentials.mvvm.ui.fragment.DetailsFragment"
         android:label="fragment_example"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/seriesNetwork"
+        android:name="com.master.androidessentials.mvvm.ui.fragment.SeriesNetworkCall"
+        android:label="fragment_series_network_call"
+        tools:layout="@layout/fragment_series_network_call" />
 </navigation>
