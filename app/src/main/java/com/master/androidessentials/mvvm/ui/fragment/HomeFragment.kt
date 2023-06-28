@@ -82,10 +82,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             viewmodel.setUserDetails(item)
             findNavController().navigate(R.id.action_homeFragment_to_DetailsFragment)
+
         }
 
         //api call to fetch data
         viewmodel.fetchAllPosts()
+
 
     }
 

@@ -8,6 +8,11 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.master.androidessentials.R
 import com.master.androidessentials.databinding.ActivityHomeBinding
 import com.master.androidessentials.mvvm.ui.base.BaseActivity
@@ -30,9 +35,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
             binding.drawerLayout.closeDrawer(GravityCompat.START);
             true
         }
+      val configutation=  AppBarConfiguration(
+            setOf(
+                R.id.homeFragment,
+                R.id.seriesNetworkCall
+            ), binding.drawerLayout
+        )
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment?
-        navController =  Navigation.findNavController(this, R.id.fragmentContainerView);
+        navController = navHostFragment?.navController!!
+        setupActionBarWithNavController(navController, configutation)
+        setupWithNavController(binding.navigationView   , navController)
 
     }
 
@@ -41,13 +54,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         binding.drawerLayout.openDrawer(GravityCompat.START)
         when (item.itemId) {
             R.id.seriesNetworkCall -> {
-
+                navController.navigate(R.id.seriesNetworkCall)
                 return true
             }
 
             R.id.parallelNetworkCall -> {
-                navController.navigate(R.id.seriesNetwork)
-               // return true
+
+                return true
             }
 
             R.id.twoLongRunningTasks -> {

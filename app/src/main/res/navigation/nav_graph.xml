@@ -13,6 +13,7 @@
         <action
             android:id="@+id/action_homeFragment_to_DetailsFragment"
             app:destination="@id/detailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -20,7 +21,7 @@
         android:label="fragment_example"
         tools:layout="@layout/fragment_details" />
     <fragment
-        android:id="@+id/seriesNetwork"
+        android:id="@+id/seriesNetworkCall"
         android:name="com.master.androidessentials.mvvm.ui.fragment.SeriesNetworkCall"
         android:label="fragment_series_network_call"
         tools:layout="@layout/fragment_series_network_call" />

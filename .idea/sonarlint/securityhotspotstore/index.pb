@@ -15,8 +15,6 @@ z
 Japp/src/main/java/com/master/androidessentials/utils/NetworkInterceptor.kt,a\9\a93212490d6636af28c80b333ae346a7256d6145
 {
 Kapp/src/main/java/com/master/androidessentials/di/modules/ActivityModule.kt,1\2\12fc2fd316ad40d6f43bfb9c489844c61080a5f7
-w
-Gapp/src/main/java/com/master/androidessentials/networking/ApiService.kt,4\4\445e72e182c420b76b5a4b42c3191d2b4a02fb33
 É
 Sapp/src/main/java/com/master/androidessentials/di/qualifiers/AppContextQualifier.kt,4\a\4ade1fe8f065608293c60e80daf9cb8fc404a6ed
 à
@@ -27,8 +25,6 @@ x
 Happ/src/main/java/com/master/androidessentials/utils/CompanyConverter.kt,a\9\a9e20246abb2bbb18caae43afd7612df63ac2200
 à
 Xapp/src/main/java/com/master/androidessentials/mvvm/models/response/userslist/Company.kt,8\3\835f3c153bf3a9e245d882bd261f4d6c8f185f4b
-{
-Kapp/src/main/java/com/master/androidessentials/mvvm/ui/base/BaseFragment.kt,c\9\c974b3a7e0d4cb53a60799af1536ccaaf80a86ca
 }
 Mapp/src/main/java/com/master/androidessentials/di/modules/NetworkingModule.kt,9\0\9066760fc03338c9b5afe272f25d58f588f3ba3a
 {
@@ -41,9 +37,11 @@ u
 Eapp/src/main/java/com/master/androidessentials/adapters/MyDiffUtil.kt,7\0\706ef1e4fb9193c55ed42b06e5d2811b769e0da2
 y
 Iapp/src/main/java/com/master/androidessentials/adapters/GenericAdapter.kt,6\f\6f8737a0ca21e48f0591a6645887d243dd02fc5d
-Å
-Qapp/src/main/java/com/master/androidessentials/mvvm/viewmodels/SharedViewModel.kt,8\4\8436ecae798070625e0adc6b25a57d8af99d1334
 z
 Japp/src/main/java/com/master/androidessentials/adapters/BindingAdapters.kt,b\1\b14b027419a8915723efbcfe6df784451a620d69
 Ö
 Uapp/src/main/java/com/master/androidessentials/mvvm/models/response/userslist/User.kt,a\f\af9d91adc38440d0f3422c40bbf50312271583db
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+{
+Kapp/src/main/java/com/master/androidessentials/mvvm/ui/base/BaseActivity.kt,a\c\ac19c1704cd95ff1ca76f515c3777074db3113be
