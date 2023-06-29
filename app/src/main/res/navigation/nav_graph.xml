@@ -25,4 +25,8 @@
         android:name="com.master.androidessentials.mvvm.ui.fragment.SeriesNetworkCall"
         android:label="fragment_series_network_call"
         tools:layout="@layout/fragment_series_network_call" />
+    <fragment
+        android:id="@+id/parallelCallsFragment"
+        android:name="com.master.androidessentials.mvvm.ui.fragment.ParallelCallsFragment"
+        android:label="ParallelCallsFragment" />
 </navigation>

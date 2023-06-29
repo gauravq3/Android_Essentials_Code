@@ -16,6 +16,7 @@ import com.master.androidessentials.networking.ApiResponse
 
 class SeriesNetworkCall : BaseFragment<FragmentSeriesNetworkCallBinding>() {
     private val viewModel: SeriesNetworkCallsViewModel by activityViewModels()
+    var data=StringBuilder()
     override fun inflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -27,20 +28,20 @@ class SeriesNetworkCall : BaseFragment<FragmentSeriesNetworkCallBinding>() {
         viewModel.getUiState().observe(this) {
             when (it) {
                 is ApiResponse.Success -> {
-
+                    data.append(it.data.toString())
+                    binding.tview.text = data
+                    binding.progressBar.visibility = View.INVISIBLE
                 }
                 is ApiResponse.Loading -> {
-
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is ApiResponse.Failure -> {
-                    //Handle Error
-
+                    binding.progressBar.visibility = View.INVISIBLE
+                    binding.tview.text = it.error
                 }
             }
         }
     }
-
-
 
 
 }

@@ -5,8 +5,11 @@ import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.master.androidessentials.di.ApplicationContextQualifier
+import com.master.androidessentials.di.qualifiers.BASEURL2
+import com.master.androidessentials.di.qualifiers.BaseUrl1
 import com.master.androidessentials.networking.ApiService
-import com.master.androidessentials.utils.Constants.BASE_URL
+import com.master.androidessentials.networking.ApiService2
+import com.master.androidessentials.utils.Constants
 import com.master.androidessentials.utils.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
@@ -18,12 +21,24 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 /*created by Gaurav Singh 23-06-2023*/
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkingModule {
+
+    @Provides
+    @BaseUrl1
+    fun provideBaseUrl1(): String {
+        return Constants.BASE_URL1
+    }
+
+    @Provides
+    @BASEURL2
+    fun provideBaseUrl2(): String = Constants.BASE_URL2
+
 
     @Provides
     @ApplicationContextQualifier
@@ -43,14 +58,25 @@ object NetworkingModule {
     }
 
     @Provides
-    fun provideRetrofit(client: OkHttpClient): Retrofit =
-        Retrofit.Builder().baseUrl(BASE_URL).client(client)
+    @BaseUrl1
+    fun provideRetrofit(@BaseUrl1 url: String, client: OkHttpClient): Retrofit =
+        Retrofit.Builder().baseUrl(url).client(client)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+
+    @Provides
+    @BASEURL2
+    fun provideRetrofit2(@BASEURL2 url: String, client: OkHttpClient): Retrofit =
+        Retrofit.Builder().baseUrl(url).client(client)
             .addConverterFactory(GsonConverterFactory.create()).build()
 
 
     @Provides
-    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+    fun provideApiService(@BaseUrl1 retrofit1: Retrofit): ApiService =
+        retrofit1.create(ApiService::class.java)
 
+    @Provides
+    fun provideApiService2(@BASEURL2 retrofit2: Retrofit): ApiService2 =
+        retrofit2.create(ApiService2::class.java)
 
     @Provides
     fun provideGlide(@ApplicationContext application: Context): RequestManager =

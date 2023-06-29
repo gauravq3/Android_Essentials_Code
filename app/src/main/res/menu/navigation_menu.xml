@@ -4,7 +4,7 @@
         android:id="@+id/seriesNetworkCall"
         android:title="@string/series_network_calls" />
     <item
-        android:id="@+id/parallelNetworkCall"
+        android:id="@+id/parallelCallsFragment"
         android:title="@string/parallel_network_calls" />
     <item
         android:id="@+id/twoLongRunningTasks"

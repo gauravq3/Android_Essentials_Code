@@ -23,8 +23,7 @@ class SeriesNetworkCallsViewModel @Inject constructor(private val repo:SeriesNet
         viewModelScope.launch {
             uiState.postValue(ApiResponse.Loading)
             try {
-                val usersFromApi = repo.getUsers()
-                when(usersFromApi) {
+                when(val usersFromApi = repo.getUsers()) {
                     is ApiResponse.Success -> {
                         uiState.postValue(ApiResponse.Success(usersFromApi.data))
                     }
@@ -41,8 +40,7 @@ class SeriesNetworkCallsViewModel @Inject constructor(private val repo:SeriesNet
             }
 
             try {
-                val usersFromApi = repo.getMoreUsers()
-                when(usersFromApi) {
+                when(val usersFromApi = repo.getMoreUsers()) {
                     is ApiResponse.Success -> {
                         uiState.postValue(ApiResponse.Success(usersFromApi.data))
                     }

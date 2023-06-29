@@ -58,8 +58,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                 return true
             }
 
-            R.id.parallelNetworkCall -> {
-
+            R.id.parallelCallsFragment -> {
+                navController.navigate(R.id.parallelCallsFragment)
                 return true
             }
 

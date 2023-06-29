@@ -1,7 +1,6 @@
 package com.master.androidessentials.mvvm.repositories
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import com.master.androidessentials.di.qualifiers.BaseUrl1
 import com.master.androidessentials.localdb.UserDao
 import com.master.androidessentials.mvvm.models.userslist.User
 import com.master.androidessentials.networking.ApiResponse
@@ -15,7 +14,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(
-    private val apiService: ApiService,
+     private val apiService: ApiService,
     private val dao: UserDao
 ) {
 
