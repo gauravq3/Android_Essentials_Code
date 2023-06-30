@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
-import com.master.androidessentials.di.ApplicationContextQualifier
+import com.master.androidessentials.di.qualifiers.ApplicationContextQualifier
 import com.master.androidessentials.di.qualifiers.BASEURL2
 import com.master.androidessentials.di.qualifiers.BaseUrl1
 import com.master.androidessentials.networking.ApiService
@@ -21,7 +21,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 /*created by Gaurav Singh 23-06-2023*/
 

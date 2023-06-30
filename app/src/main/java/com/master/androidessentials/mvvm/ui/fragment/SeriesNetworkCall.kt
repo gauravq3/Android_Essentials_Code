@@ -1,16 +1,13 @@
 package com.master.androidessentials.mvvm.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.master.androidessentials.R
 import com.master.androidessentials.databinding.FragmentSeriesNetworkCallBinding
 import com.master.androidessentials.mvvm.ui.base.BaseFragment
 import com.master.androidessentials.mvvm.viewmodels.SeriesNetworkCallsViewModel
-import com.master.androidessentials.mvvm.viewmodels.SharedViewModel
 import com.master.androidessentials.networking.ApiResponse
 
 

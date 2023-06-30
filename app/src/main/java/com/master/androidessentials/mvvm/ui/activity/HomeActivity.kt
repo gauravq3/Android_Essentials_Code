@@ -5,13 +5,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.master.androidessentials.R
 import com.master.androidessentials.databinding.ActivityHomeBinding
@@ -30,12 +26,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setHomeAsUpIndicator(R.drawable.more)
-        binding.navigationView.setNavigationItemSelectedListener { item: MenuItem ->
+        binding.navigationView.setNavigationItemSelectedListener { _: MenuItem ->
 
             binding.drawerLayout.closeDrawer(GravityCompat.START);
             true
         }
-      val configutation=  AppBarConfiguration(
+        val configutation = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
                 R.id.seriesNetworkCall
@@ -45,7 +41,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment?
         navController = navHostFragment?.navController!!
         setupActionBarWithNavController(navController, configutation)
-        setupWithNavController(binding.navigationView   , navController)
+        setupWithNavController(binding.navigationView, navController)
 
     }
 
@@ -55,28 +51,19 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         when (item.itemId) {
             R.id.seriesNetworkCall -> {
                 navController.navigate(R.id.seriesNetworkCall)
-                return true
             }
 
             R.id.parallelCallsFragment -> {
                 navController.navigate(R.id.parallelCallsFragment)
-                return true
             }
 
-            R.id.twoLongRunningTasks -> {
-
-                return true
+            R.id.scopedStorage -> {
+                navController.navigate(R.id.scopedStorage)
             }
 
-            R.id.ignoreError -> {
-                return true
-            }
             R.id.lamdasAndHigherOrderFn -> {
 
-                return true
             }
-
-
         }
         return super.onOptionsItemSelected(item)
 

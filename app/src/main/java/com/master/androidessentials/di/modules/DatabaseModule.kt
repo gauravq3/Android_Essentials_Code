@@ -5,11 +5,10 @@ import androidx.room.Room
 import com.master.androidessentials.localdb.UserDao
 import com.master.androidessentials.localdb.UserDatabase
 import dagger.Module
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)

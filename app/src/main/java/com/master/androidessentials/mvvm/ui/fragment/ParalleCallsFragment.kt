@@ -1,12 +1,11 @@
 package com.master.androidessentials.mvvm.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.master.androidessentials.R
 import com.master.androidessentials.databinding.FragmentParalleCallsBinding
 import com.master.androidessentials.mvvm.ui.base.BaseFragment
 import com.master.androidessentials.mvvm.viewmodels.ParallelCallsViewmodel
@@ -28,26 +27,27 @@ class ParallelCallsFragment : BaseFragment<FragmentParalleCallsBinding>() {
 
 
 
-        viewmodels.getData().observe(viewLifecycleOwner,{
-            when(it){
-                is ApiResponse.Loading->{
+        viewmodels.getData().observe(viewLifecycleOwner) {
+            when (it) {
+                is ApiResponse.Loading -> {
                     //show loading
-                    binding.progressBar.visibility=View.VISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                 }
-                is ApiResponse.Success->{
+                is ApiResponse.Success -> {
                     //hide loading
                     //show data
-                    binding.progressBar.visibility=View.GONE
-binding.tview.text=it.data.toString()
+                    binding.progressBar.visibility = View.GONE
+                    binding.tview.text = it.data.toString()
 
                 }
-                is ApiResponse.Failure->{
-                    binding.progressBar.visibility=View.GONE
+                is ApiResponse.Failure -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                     //hide loading
                     //show error
                 }
             }
-        })
+        }
     }
 
 

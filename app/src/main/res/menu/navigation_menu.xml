@@ -7,11 +7,9 @@
         android:id="@+id/parallelCallsFragment"
         android:title="@string/parallel_network_calls" />
     <item
-        android:id="@+id/twoLongRunningTasks"
-        android:title="@string/two_long_running_tasks" />
-    <item
-        android:id="@+id/ignoreError"
-        android:title="@string/ignore_error_and_continue" />
+        android:id="@+id/scopedStorage"
+        android:title="@string/scoped_storage" />
+
     <item
         android:id="@+id/lamdasAndHigherOrderFn"
         android:title="@string/lamdas_and_higher_order_fn" />

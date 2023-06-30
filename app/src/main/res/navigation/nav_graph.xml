@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.master.androidessentials.mvvm.ui.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_DetailsFragment"
             app:destination="@id/detailsFragment" />
@@ -29,4 +29,8 @@
         android:id="@+id/parallelCallsFragment"
         android:name="com.master.androidessentials.mvvm.ui.fragment.ParallelCallsFragment"
         android:label="ParallelCallsFragment" />
+    <fragment
+        android:id="@+id/scopedStorage"
+        android:name="com.master.androidessentials.mvvm.ui.fragment.ScopedStorageFragment"
+        android:label="ScopedStorageFragment" />
 </navigation>

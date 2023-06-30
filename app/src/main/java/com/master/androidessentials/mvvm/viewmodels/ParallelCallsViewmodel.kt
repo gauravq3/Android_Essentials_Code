@@ -8,6 +8,7 @@ import com.master.androidessentials.mvvm.models.response.ApiUser
 import com.master.androidessentials.mvvm.repositories.ParallelCallsRepo
 import com.master.androidessentials.networking.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -15,14 +16,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ParallelCallsViewmodel @Inject constructor(val repository: ParallelCallsRepo) : ViewModel() {
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        data.postValue(ApiResponse.Failure(throwable.message!!))
+    }
 
-    val data=MutableLiveData<ApiResponse<List<ApiUser>>>(ApiResponse.Loading)
+    val data = MutableLiveData<ApiResponse<List<ApiUser>>>(ApiResponse.Loading)
+
     init {
         fetchUsers()
     }
 
     private fun fetchUsers() {
-        viewModelScope.launch {
+        viewModelScope.launch(exceptionHandler) {
             data.postValue(ApiResponse.Loading)
             try {
                 // coroutineScope is needed, else in case of any network error, it will crash
@@ -31,28 +36,25 @@ class ParallelCallsViewmodel @Inject constructor(val repository: ParallelCallsRe
                     val moreUsersFromApiDeferred = async { repository.getMoreUsers() }
                     val allUsersFromApi = mutableListOf<ApiUser>()
 
-                    val usersFromApi = usersFromApiDeferred.await()
-
-                    when(usersFromApi) {
+                    when (val usersFromApi = usersFromApiDeferred.await()) {
                         is ApiResponse.Success -> {
                             allUsersFromApi.addAll(usersFromApi.data)
 
                         }
                         is ApiResponse.Failure -> {
-                            data.postValue(usersFromApi)
+                            data.postValue(ApiResponse.Failure(usersFromApi.error))
                         }
                         is ApiResponse.Loading -> {
                             data.postValue(ApiResponse.Loading)
                         }
                     }
-                    val moreUsersFromApi = moreUsersFromApiDeferred.await()
-                    when(moreUsersFromApi) {
+                    when (val moreUsersFromApi = moreUsersFromApiDeferred.await()) {
                         is ApiResponse.Success -> {
                             allUsersFromApi.addAll(moreUsersFromApi.data)
 
                         }
                         is ApiResponse.Failure -> {
-                            data.postValue(moreUsersFromApi)
+                            data.postValue(ApiResponse.Failure(moreUsersFromApi.error))
                         }
                         is ApiResponse.Loading -> {
                             data.postValue(ApiResponse.Loading)
@@ -70,7 +72,7 @@ class ParallelCallsViewmodel @Inject constructor(val repository: ParallelCallsRe
     }
 
 
-    fun getData():LiveData<ApiResponse<List<ApiUser>>>{
+    fun getData(): LiveData<ApiResponse<List<ApiUser>>> {
         return data
-        }
     }
+}

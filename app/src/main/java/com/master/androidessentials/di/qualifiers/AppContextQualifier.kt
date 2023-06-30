@@ -1,4 +1,4 @@
-package com.master.androidessentials.di
+package com.master.androidessentials.di.qualifiers
 
 import javax.inject.Qualifier
 

@@ -11,6 +11,7 @@ class ParallelCallsRepo @Inject constructor(val api: ApiService2)
     suspend fun getUsers(): ApiResponse<List<ApiUser>> {
         val data = MutableLiveData<ApiResponse<List<ApiUser>>>(ApiResponse.Loading)
         try {
+            throw java.lang.RuntimeException("Test Exception")
             val response = api.getUsersList()
             if (response.isSuccessful) {
                 val fetchedData = response.body() ?: emptyList()

@@ -1,25 +1,24 @@
 package com.master.androidessentials.mvvm.ui.fragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.master.androidessentials.R
+import com.master.androidessentials.adapters.GenericAdapter
 import com.master.androidessentials.databinding.FragmentHomeBinding
 import com.master.androidessentials.databinding.ItemViewBinding
-import com.master.androidessentials.mvvm.ui.base.BaseFragment
-import com.master.androidessentials.adapters.GenericAdapter
-import com.master.androidessentials.adapters.MyDiffUtil
 import com.master.androidessentials.mvvm.models.userslist.User
-import com.master.androidessentials.networking.ApiResponse
+import com.master.androidessentials.mvvm.ui.base.BaseFragment
 import com.master.androidessentials.mvvm.viewmodels.SharedViewModel
+import com.master.androidessentials.networking.ApiResponse
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -63,6 +62,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     is ApiResponse.Success -> {
                         binding.progressBar.visibility = View.GONE
                         mAdapter.updateList1(result.data)
+
+                        Handler().postDelayed({
+                            var d=  (result.data as ArrayList<User>).removeAt(1)
+                            mAdapter.updateList1(result.data)
+                        }, 8000)
+
+
                     }
                     is ApiResponse.Failure -> {
                         binding.progressBar.visibility = View.GONE
