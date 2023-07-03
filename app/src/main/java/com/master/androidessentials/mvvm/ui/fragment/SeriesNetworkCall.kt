@@ -22,10 +22,11 @@ class SeriesNetworkCall : BaseFragment<FragmentSeriesNetworkCallBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUiState().observe(this) {
+        viewModel.getUsersData().observe(this) {
             when (it) {
                 is ApiResponse.Success -> {
-                    data.append(it.data.toString())
+
+                    data.append(it.data.joinToString("\n\n") { line-> line.toString() })
                     binding.tview.text = data
                     binding.progressBar.visibility = View.INVISIBLE
                 }

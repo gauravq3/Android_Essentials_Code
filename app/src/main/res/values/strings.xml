@@ -15,5 +15,9 @@
     <string name="two_long_running_tasks">Two Long Running Tasks</string>
     <string name="parallel_network_calls">Parallel Network Calls</string>
     <string name="series_network_calls">Series Network Calls</string>
-    <string name="store_text_in_file">Store text in file</string>
+    <string name="store_text_in_file">Store data in file</string>
+    <string name="enter_some_text">Please enter some text</string>
+    <string name="mime_plaintext">text/plain</string>
+    <string name="get_saved_data">Get saved data</string>
+    <string name="save_in_documents">Save in Documents</string>
 </resources>

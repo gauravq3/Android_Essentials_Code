@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SeriesNetworkCallsViewModel @Inject constructor(private val repo:SeriesNetworkCallRepo):ViewModel() {
-    private val uiState = MutableLiveData<ApiResponse<List<ApiUser>>>()
+    private val usersState = MutableLiveData<ApiResponse<List<ApiUser>>>()
 
     init {
         fetchUsers()
@@ -21,39 +21,39 @@ class SeriesNetworkCallsViewModel @Inject constructor(private val repo:SeriesNet
 
     private fun fetchUsers() {
         viewModelScope.launch {
-            uiState.postValue(ApiResponse.Loading)
+            usersState.postValue(ApiResponse.Loading)
             try {
                 when(val usersFromApi = repo.getUsers()) {
                     is ApiResponse.Success -> {
-                        uiState.postValue(ApiResponse.Success(usersFromApi.data))
+                        usersState.postValue(ApiResponse.Success(usersFromApi.data))
                     }
                     is ApiResponse.Failure -> {
-                        uiState.postValue(usersFromApi)
+                        usersState.postValue(usersFromApi)
                     }
                     is ApiResponse.Loading -> {
-                        uiState.postValue(ApiResponse.Loading)
+                        usersState.postValue(ApiResponse.Loading)
                     }
                 }
 
             } catch (e: Exception) {
-                uiState.postValue(ApiResponse.Failure("Something Went Wrong"))
+                usersState.postValue(ApiResponse.Failure("Something Went Wrong"))
             }
 
             try {
                 when(val usersFromApi = repo.getMoreUsers()) {
                     is ApiResponse.Success -> {
-                        uiState.postValue(ApiResponse.Success(usersFromApi.data))
+                        usersState.postValue(ApiResponse.Success(usersFromApi.data))
                     }
                     is ApiResponse.Failure -> {
-                        uiState.postValue(usersFromApi)
+                        usersState.postValue(usersFromApi)
                     }
                     is ApiResponse.Loading -> {
-                        uiState.postValue(ApiResponse.Loading)
+                        usersState.postValue(ApiResponse.Loading)
                     }
                 }
 
             } catch (e: Exception) {
-                uiState.postValue(ApiResponse.Failure("Something Went Wrong"))
+                usersState.postValue(ApiResponse.Failure("Something Went Wrong"))
             }
 
 
@@ -64,7 +64,7 @@ class SeriesNetworkCallsViewModel @Inject constructor(private val repo:SeriesNet
         }
     }
 
-    fun getUiState(): LiveData<ApiResponse<List<ApiUser>>> {
-        return uiState
+    fun getUsersData(): LiveData<ApiResponse<List<ApiUser>>> {
+        return usersState
     }
 }

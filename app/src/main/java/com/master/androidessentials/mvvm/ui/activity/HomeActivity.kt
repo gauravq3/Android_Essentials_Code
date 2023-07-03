@@ -45,6 +45,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         binding.drawerLayout.openDrawer(GravityCompat.START)

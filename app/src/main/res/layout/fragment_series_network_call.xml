@@ -7,7 +7,7 @@
 
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".mvvm.ui.fragment.SeriesNetworkCall">
@@ -19,8 +19,7 @@
             <TextView
                 android:id="@+id/tview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/hello_blank_fragment" />
+                android:layout_height="match_parent" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -33,5 +32,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

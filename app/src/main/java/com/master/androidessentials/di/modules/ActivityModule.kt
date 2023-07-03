@@ -30,8 +30,5 @@ object ActivityModule {
     @Provides
     fun provideParallelCallsRepository(apiService: ApiService2): ParallelCallsRepo =
         ParallelCallsRepo(apiService)
-    @Provides
-    fun providePermissionManager(@ActivityContext activity: Activity): PermissionManager {
-        return PermissionManager(activity)
-    }
+
 }

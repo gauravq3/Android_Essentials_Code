@@ -6,37 +6,37 @@ import com.master.androidessentials.networking.ApiResponse
 import com.master.androidessentials.networking.ApiService2
 import javax.inject.Inject
 
-class ParallelCallsRepo @Inject constructor(val api: ApiService2)
-{
+class ParallelCallsRepo @Inject constructor(val api: ApiService2) {
     suspend fun getUsers(): ApiResponse<List<ApiUser>> {
         val data = MutableLiveData<ApiResponse<List<ApiUser>>>(ApiResponse.Loading)
         try {
-            throw java.lang.RuntimeException("Test Exception")
+            //intentinally throwing an exception to test the error case
+            throw java.lang.RuntimeException("Some Exception occured in Users API")
             val response = api.getUsersList()
             if (response.isSuccessful) {
                 val fetchedData = response.body() ?: emptyList()
-                data.value=(ApiResponse.Success(fetchedData))
+                data.value = (ApiResponse.Success(fetchedData))
             } else {
-                data.value=(ApiResponse.Failure("API request failed"))
+                data.value = (ApiResponse.Failure("API request failed"))
             }
         } catch (e: Exception) {
-            data.value=(ApiResponse.Failure(e.message!!))
+            data.value = (ApiResponse.Failure(e.message!!))
         }
         return data.value!!
     }
 
-    suspend  fun getMoreUsers(): ApiResponse<List<ApiUser>> {
+    suspend fun getMoreUsers(): ApiResponse<List<ApiUser>> {
         val data = MutableLiveData<ApiResponse<List<ApiUser>>>(ApiResponse.Loading)
         try {
             val response = api.getMoreUsers()
             if (response.isSuccessful) {
                 val fetchedData = response.body() ?: emptyList()
-                data.value=(ApiResponse.Success(fetchedData))
+                data.value = (ApiResponse.Success(fetchedData))
             } else {
-                data.value=(ApiResponse.Failure("API request failed"))
+                data.value = (ApiResponse.Failure("API request failed"))
             }
         } catch (e: Exception) {
-            data.value=(ApiResponse.Failure(e.message!!))
+            data.value = (ApiResponse.Failure(e.message!!))
         }
         return data.value!!
     }

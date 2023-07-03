@@ -25,8 +25,6 @@ class ParallelCallsFragment : BaseFragment<FragmentParalleCallsBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         viewmodels.getData().observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResponse.Loading -> {

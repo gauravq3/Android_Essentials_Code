@@ -5,20 +5,103 @@
 
     <data>
 
+        <variable
+            name="fragment"
+            type="com.master.androidessentials.mvvm.ui.fragment.ScopedStorageFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="8dp"
         tools:context=".mvvm.ui.fragment.ScopedStorageFragment">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filetoSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Content to save"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/saveToFile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_200"
+            android:onClick="@{()->fragment.storeData()}"
             android:text="@string/store_text_in_file"
-            android:background="@color/teal_200"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/filetoSave" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/getDataBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_700"
+            android:onClick="@{()->fragment.onGetSavedData()}"
+            android:text="Save in Downloads"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/saveToFile" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dataFromFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="26sp"
+            app:layout_constraintTop_toBottomOf="@+id/getDataBtn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/saveInDocuments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_700"
+            android:onClick="@{()->fragment.saveDataInDocs()}"
+            android:text="@string/save_in_documents"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/dataFromFile" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/saveInPrivate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_700"
+            android:onClick="@{()->fragment.saveInPrivate()}"
+            android:text="Save in private data"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/saveInDocuments" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fetchFromPrivate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_700"
+            android:onClick="@{()->fragment.getPrivateFileContents()}"
+            android:text="Fetch private data"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/saveInPrivate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/filedataprivate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="26sp"
+            app:layout_constraintTop_toBottomOf="@+id/fetchFromPrivate" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
